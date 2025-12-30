@@ -2,17 +2,19 @@ package com.example.hw_3.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hw_3.api.RetrofitClient
 import com.example.hw_3.data.ApiReference
 import com.example.hw_3.data.DnDClass
-import kotlinx.coroutines.Dispatchers
+import com.example.hw_3.data.mapper.toDataModel
+import com.example.hw_3.di.DnDModule
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class DnDClassViewModel : ViewModel() {
+    private val getClassesUseCase = DnDModule.getClassesUseCase
+    private val getClassDetailsUseCase = DnDModule.getClassDetailsUseCase
+
     private val _classes = MutableStateFlow<List<ApiReference>>(emptyList())
     val classes: StateFlow<List<ApiReference>> = _classes.asStateFlow()
 
@@ -31,24 +33,18 @@ class DnDClassViewModel : ViewModel() {
         _isLoading.value = true
         _error.value = null
 
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                val response = RetrofitClient.dnDApiService.getClasses()
-                withContext(Dispatchers.Main) {
-                    if (response.isSuccessful) {
-                        _classes.value = response.body()?.results ?: emptyList()
-                        _error.value = null
-                    } else {
-                        _error.value = "Ошибка загрузки классов: ${response.code()}"
-                    }
+        viewModelScope.launch {
+            getClassesUseCase().fold(
+                onSuccess = { entities ->
+                    _classes.value = entities.map { it.toDataModel() }
+                    _error.value = null
+                    _isLoading.value = false
+                },
+                onFailure = { exception ->
+                    _error.value = exception.message ?: "Неизвестная ошибка"
                     _isLoading.value = false
                 }
-            } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    _error.value = "Ошибка: ${e.message}"
-                    _isLoading.value = false
-                }
-            }
+            )
         }
     }
 
@@ -56,26 +52,19 @@ class DnDClassViewModel : ViewModel() {
         _isLoading.value = true
         _error.value = null
 
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                val response = RetrofitClient.dnDApiService.getClassDetails(index)
-                withContext(Dispatchers.Main) {
-                    if (response.isSuccessful) {
-                        _selectedClass.value = response.body()
-                        _error.value = null
-                    } else {
-                        _error.value = "Ошибка загрузки класса: ${response.code()}"
-                    }
+        viewModelScope.launch {
+            getClassDetailsUseCase(index).fold(
+                onSuccess = { entity ->
+                    _selectedClass.value = entity.toDataModel()
+                    _error.value = null
+                    _isLoading.value = false
+                },
+                onFailure = { exception ->
+                    _error.value = exception.message ?: "Неизвестная ошибка"
                     _isLoading.value = false
                 }
-            } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    _error.value = "Ошибка: ${e.message}"
-                    _isLoading.value = false
-                }
-            }
+            )
         }
     }
 }
-
 

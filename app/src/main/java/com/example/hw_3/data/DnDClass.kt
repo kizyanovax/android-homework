@@ -66,4 +66,3 @@ data class SpellcastingInfo(
     @SerializedName("desc") val desc: List<String>?
 )
 
-

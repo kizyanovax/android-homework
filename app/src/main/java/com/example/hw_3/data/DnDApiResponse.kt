@@ -15,4 +15,3 @@ data class ApiReference(
     @SerializedName("url") val url: String
 )
 
-

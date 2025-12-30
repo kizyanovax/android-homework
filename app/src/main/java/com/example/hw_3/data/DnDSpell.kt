@@ -28,4 +28,3 @@ data class SpellDamage(
     @SerializedName("damage_at_slot_level") val damageAtSlotLevel: Map<String, String>?
 )
 
-
