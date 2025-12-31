@@ -21,14 +21,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.hw_3.Routes
+import com.example.hw_3.core.Routes
 import com.example.hw_3.cache.BadgeCache
 import com.example.hw_3.data.ApiReference
 import com.example.hw_3.data.database.AppDatabase
 import com.example.hw_3.data.database.FavoriteEntity
 import com.example.hw_3.data.preferences.FilterPreferencesManager
 import com.example.hw_3.di.DnDModule
-import com.example.hw_3.ui.theme.*
+import com.example.hw_3.core.ui.theme.*
 import com.example.hw_3.viewmodel.DnDClassViewModel
 import com.google.gson.Gson
 import kotlinx.coroutines.launch

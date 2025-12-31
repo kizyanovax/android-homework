@@ -10,15 +10,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.hw_3.screens.ClassFilterScreen
-import com.example.hw_3.screens.EditProfileScreen
 import com.example.hw_3.screens.FavoritesScreen
 import com.example.hw_3.screens.FilterScreen
-import com.example.hw_3.screens.ProfileScreen
 import com.example.hw_3.screens.Screen1
 import com.example.hw_3.viewmodel.DnDClassViewModel
 import com.example.hw_3.viewmodel.DnDMonsterViewModel
 import com.example.hw_3.viewmodel.DnDSpellViewModel
-import com.example.hw_3.viewmodel.ProfileViewModel
+import com.example.hw_3.core.Routes
+import com.example.hw_3.profile.screens.ProfileScreen
+import com.example.hw_3.profile.screens.EditProfileScreen
+import com.example.hw_3.profile.viewmodel.ProfileViewModel
 
 
 @Composable
@@ -66,7 +67,11 @@ fun NavigationGraph(
         composable(Routes.EditProfile.route) {
             onBottomBarVisibilityChanged(false)
             val profileViewModel: ProfileViewModel = viewModel()
-            EditProfileScreen(navController = navController, viewModel = profileViewModel)
+            EditProfileScreen(
+                navController = navController,
+                viewModel = profileViewModel,
+                mainActivityClass = MainActivity::class.java
+            )
         }
         composable(Routes.Filter.route) {
             onBottomBarVisibilityChanged(false)

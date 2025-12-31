@@ -22,7 +22,7 @@ import androidx.navigation.NavHostController
 import com.example.hw_3.data.database.AppDatabase
 import com.example.hw_3.data.database.FavoriteEntity
 import com.example.hw_3.di.DnDModule
-import com.example.hw_3.ui.theme.*
+import com.example.hw_3.core.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

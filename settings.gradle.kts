@@ -21,4 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "hw-3"
 include(":app")
+include(":core")
+include(":profile")
  

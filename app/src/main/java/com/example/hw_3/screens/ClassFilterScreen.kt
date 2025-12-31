@@ -19,7 +19,7 @@ import com.example.hw_3.data.ApiReference
 import com.example.hw_3.data.preferences.FilterPreferencesManager
 import com.example.hw_3.data.preferences.FilterSettings
 import com.example.hw_3.di.DnDModule
-import com.example.hw_3.ui.theme.*
+import com.example.hw_3.core.ui.theme.*
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)

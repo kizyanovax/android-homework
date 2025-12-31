@@ -1,0 +1,24 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.hw_3.profile" >
+4
+5    <uses-sdk android:minSdkVersion="24" />
+6
+7    <application>
+7-->C:\Users\kizya\Desktop\android-homework\profile\src\main\AndroidManifest.xml:3:5-11:19
+8        <receiver
+8-->C:\Users\kizya\Desktop\android-homework\profile\src\main\AndroidManifest.xml:4:9-10:20
+9            android:name="com.example.hw_3.profile.notifications.AlarmReceiver"
+9-->C:\Users\kizya\Desktop\android-homework\profile\src\main\AndroidManifest.xml:5:13-80
+10            android:exported="true" >
+10-->C:\Users\kizya\Desktop\android-homework\profile\src\main\AndroidManifest.xml:6:13-36
+11            <intent-filter>
+11-->C:\Users\kizya\Desktop\android-homework\profile\src\main\AndroidManifest.xml:7:13-9:29
+12                <action android:name="com.example.hw_3.ACTION_ALARM" />
+12-->C:\Users\kizya\Desktop\android-homework\profile\src\main\AndroidManifest.xml:8:17-72
+12-->C:\Users\kizya\Desktop\android-homework\profile\src\main\AndroidManifest.xml:8:25-69
+13            </intent-filter>
+14        </receiver>
+15    </application>
+16
+17</manifest>

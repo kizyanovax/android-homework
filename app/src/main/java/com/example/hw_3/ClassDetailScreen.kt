@@ -17,7 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.hw_3.ui.InfoCard
-import com.example.hw_3.ui.theme.*
+import com.example.hw_3.core.ui.theme.*
 import com.example.hw_3.viewmodel.DnDClassViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)

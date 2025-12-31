@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.hw_3.ui.theme.*
+import com.example.hw_3.core.ui.theme.*
 
 @Composable
 fun BottomBar(
