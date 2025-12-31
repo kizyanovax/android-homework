@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
 }
 
 android {
@@ -40,12 +41,39 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+    }
+}
+
+kapt {
+    correctErrorTypes = true
+    useBuildCache = true
+    javacOptions {
+        option("--add-exports", "jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED")
+        option("--add-exports", "jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED")
+        option("--add-exports", "jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED")
+        option("--add-exports", "jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED")
+        option("--add-exports", "jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED")
+        option("--add-exports", "jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED")
+        option("--add-exports", "jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED")
+        option("--add-exports", "jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED")
+        option("--add-exports", "jdk.compiler/com.sun.tools.javac.jvm=ALL-UNNAMED")
+        option("--add-exports", "jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED")
+        option("--add-opens", "jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED")
+        option("--add-opens", "jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED")
+        option("--add-opens", "jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED")
+        option("--add-opens", "jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED")
+        option("--add-opens", "jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED")
+        option("--add-opens", "jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED")
+        option("--add-opens", "jdk.compiler/com.sun.tools.javac.jvm=ALL-UNNAMED")
+        option("--add-opens", "jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED")
+        option("--add-opens", "jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED")
+        option("--add-opens", "jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED")
     }
 }
 
@@ -83,4 +111,18 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation("androidx.navigation:navigation-compose:2.7.6")
 
+    // DataStore для хранения настроек фильтров
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    
+    // Room для базы данных избранного
+    val roomVersion = "2.6.1"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
+    
+    // Lifecycle ViewModel для Compose
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    
+    // Permissions для Compose
+    implementation("com.google.accompanist:accompanist-permissions:0.32.0")
 }

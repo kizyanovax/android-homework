@@ -14,11 +14,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import com.example.hw_3.notifications.NotificationHelper
 import com.example.hw_3.ui.theme.Hw3Theme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Создаём канал уведомлений при запуске приложения
+        NotificationHelper.createNotificationChannel(this)
         setContent {
             Hw3Theme {
                 MainApp()

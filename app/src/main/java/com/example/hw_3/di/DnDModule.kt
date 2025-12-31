@@ -1,7 +1,11 @@
 package com.example.hw_3.di
 
+import android.content.Context
 import com.example.hw_3.api.DnDApiService
 import com.example.hw_3.api.RetrofitClient
+import com.example.hw_3.cache.BadgeCache
+import com.example.hw_3.data.database.AppDatabase
+import com.example.hw_3.data.preferences.FilterPreferencesManager
 import com.example.hw_3.data.repository.DnDRepositoryImpl
 import com.example.hw_3.domain.repository.DnDRepository
 import com.example.hw_3.domain.usecase.*
@@ -37,6 +41,20 @@ object DnDModule {
 
     val getMonsterDetailsUseCase: GetMonsterDetailsUseCase by lazy {
         GetMonsterDetailsUseCase(repository)
+    }
+
+    // BadgeCache - singleton для всего приложения
+    val badgeCache: BadgeCache by lazy {
+        BadgeCache()
+    }
+
+    // Context-dependent dependencies - создаются через функции
+    fun getFilterPreferencesManager(context: Context): FilterPreferencesManager {
+        return FilterPreferencesManager(context)
+    }
+
+    fun getAppDatabase(context: Context): AppDatabase {
+        return AppDatabase.getDatabase(context)
     }
 }
 

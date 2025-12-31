@@ -20,9 +20,9 @@ sealed class BottomNavigationItems (
         title = "Заклинания",
         icon = Icons.Filled.AutoAwesome
     )
-    object Screen3 : BottomNavigationItems(
-        route = "screen3",
-        title = "Монстры",
-        icon = Icons.Filled.Pets
+    object Profile : BottomNavigationItems(
+        route = "profile",
+        title = "Профиль",
+        icon = Icons.Filled.AccountCircle
     )
 }
